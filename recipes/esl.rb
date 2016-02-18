@@ -38,13 +38,20 @@ when 'debian'
 
 when 'rhel'
   if node['platform_version'].to_i <= 5
-    Chef::Log.fatal('Erlang Solutions pacakge repositories are not available for EL5')
-    fail
+    Chef::Log.fatal('Erlang Solutions package repositories are not available for EL5')
+    raise 'Erlang Solutions package repositories are not available for EL5'
   end
 
   include_recipe 'yum-erlang_solutions'
 
   package 'esl-erlang' do
     version node['erlang']['esl']['version'] if node['erlang']['esl']['version']
+  end
+
+when 'windows'
+  windows_package 'esl-erlang' do
+    source "https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_${node['erlang']['esl']['version']}~windows_amd64.exe"
+    installer_type :nsis
+    action :install
   end
 end

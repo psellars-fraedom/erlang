@@ -45,4 +45,12 @@ when 'rhel'
 
   include_recipe 'yum-epel'
   package 'erlang'
+
+when 'windows'
+  Chef::Log.warn('Doing Windows')
+  windows_package 'erlang' do
+    source "http://erlang.org/download/otp_win64_#{node['erlang']['windows']['version']}.exe"
+    installer_type :nsis
+    action :install
+  end
 end

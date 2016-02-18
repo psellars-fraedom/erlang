@@ -4,7 +4,7 @@ describe 'erlang::esl' do
   describe 'Debian Platform Family' do
     cached(:chef_run_debian) do
       ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04')
-        .converge('erlang::esl')
+                            .converge('erlang::esl')
     end
 
     it 'converges successfully' do
@@ -27,8 +27,10 @@ describe 'erlang::esl' do
   describe 'RHEL Platform Family' do
     cached(:chef_run_rhel) do
       ChefSpec::ServerRunner.new(platform: 'centos', version: '7.0')
-        .converge('erlang::esl')
+                            .converge('erlang::esl')
     end
+
+    let(:erlang_yum_package) { "#{chef_run_rhel.node['erlang']['esl']['version']}" }
 
     it 'converges successfully' do
       expect { :chef_run_rhel }.to_not raise_error

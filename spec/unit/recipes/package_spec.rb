@@ -40,7 +40,7 @@ describe 'erlang::package' do
   describe 'RHEL Platform Family' do
     cached(:chef_run_rhel) do
       ChefSpec::ServerRunner.new(platform: 'centos', version: '7.0')
-        .converge('erlang::package')
+                            .converge('erlang::package')
     end
 
     it 'converges successfully' do
@@ -59,11 +59,22 @@ describe 'erlang::package' do
   context 'RHEL 5' do
     cached(:chef_run_rhel_5) do
       ChefSpec::ServerRunner.new(platform: 'centos', version: '5.10')
-        .converge('erlang::package')
+                            .converge('erlang::package')
     end
 
     it 'creates the yum EPELErlangrepo repository' do
       expect(chef_run_rhel_5).to create_yum_repository('EPELErlangrepo')
+    end
+  end
+
+  describe 'Windows' do
+    let(:chef_run_windows) do
+      ChefSpec::ServerRunner.new(platform: 'windows', version: '2012R2')
+                            .converge('erlang::package')
+    end
+
+    it 'installs the erlang binary package' do
+      expect(chef_run_windows).to install_windows_package('erlang').with(installer_type: :nsis)
     end
   end
 end

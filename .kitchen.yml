@@ -18,6 +18,7 @@ platforms:
     run_list: apt::default
   - name: ubuntu-14.04
     run_list: apt::default
+  - name: windows-2012R2
 
 suites:
 - name: default
@@ -35,6 +36,7 @@ suites:
     - centos-6.7 
     - centos-7.1
     - fedora-21
+    - windows-2012R2
 
 - name: esl
   run_list:

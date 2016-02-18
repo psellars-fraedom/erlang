@@ -7,6 +7,7 @@ Manages installation of Erlang via packages or source.
 ### Platforms
 - Debian/Ubuntu
 - RHEL/CentOS/Scientific/Amazon/Oracle
+- Windows
 
 ### Chef
 - Chef 11+
@@ -34,6 +35,7 @@ Manages installation of Erlang via packages or source.
 - used for ESL packages, useful for installing the packages on
 - distributions that they don't make specific packages available
 - (e.g., maverick vs precise).
+- `node['erlang']['windows']['version']` - version specifier for Windows installers
 
 ## Recipes
 ### default
