@@ -47,9 +47,10 @@ when 'rhel'
   package 'erlang'
 
 when 'windows'
-  Chef::Log.warn('Doing Windows')
+  Chef::Log.info("Install Erlang verions: #{node['erlang']['windows']['version']}")
   windows_package 'erlang' do
     source "http://erlang.org/download/otp_win64_#{node['erlang']['windows']['version']}.exe"
+    checksum node['erlang']['windows']['checksum']
     installer_type :nsis
     action :install
   end

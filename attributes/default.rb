@@ -26,4 +26,5 @@ default['erlang']['source']['cflags'] = ''
 default['erlang']['esl']['version'] = nil
 default['erlang']['esl']['lsb_codename'] = node['lsb'] ? node['lsb']['codename'] : 'no_lsb'
 
-default['erlang']['windows']['version'] = 'R15B01'
+default['erlang']['windows']['version'] = 'R15B02'
+default['erlang']['windows']['checksum'] = nil

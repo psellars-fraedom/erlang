@@ -16,7 +16,9 @@ group :unit do
 end
 
 group :kitchen_common do
-  gem 'test-kitchen', '~> 1.4'
+  gem 'test-kitchen', '~> 1.4', git: 'https://github.com/mwrock/test-kitchen', branch: 'winrm-fs'
+  gem 'winrm', '~> 1.6'
+  gem 'winrm-fs', '~> 0.3'
 end
 
 group :kitchen_vagrant do
