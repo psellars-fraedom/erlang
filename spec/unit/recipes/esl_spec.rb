@@ -30,14 +30,16 @@ describe 'erlang::esl' do
                             .converge('erlang::esl')
     end
 
-    let(:erlang_yum_package) { "#{chef_run_rhel.node['erlang']['esl']['version']}" }
-
     it 'converges successfully' do
       expect { :chef_run_rhel }.to_not raise_error
     end
 
     it 'includes the yum-erlang_solutions recipe' do
       expect(chef_run_rhel).to include_recipe('yum-erlang_solutions')
+    end
+
+    it 'installs the esl-erlang package' do
+      expect(chef_run_rhel).to install_package('esl-erlang')
     end
   end
 end

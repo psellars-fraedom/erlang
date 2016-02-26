@@ -27,4 +27,4 @@ default['erlang']['esl']['version'] = nil
 default['erlang']['esl']['lsb_codename'] = node['lsb'] ? node['lsb']['codename'] : 'no_lsb'
 
 default['erlang']['windows']['version'] = 'R15B02'
-default['erlang']['windows']['checksum'] = nil
+default['erlang']['windows']['checksum'] = '9df79e9a8e6b9626ab904f64ff71261b10ec4e561489d1101111d504ed9df518'

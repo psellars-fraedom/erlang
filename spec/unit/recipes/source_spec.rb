@@ -5,6 +5,7 @@ describe 'erlang::source' do
     cached(:chef_run) { ChefSpec::ServerRunner.new.converge('erlang::source') }
 
     it 'converges successfully' do
+      expect { :chef_run_debian }.to_not raise_error
       expect { :chef_run_rhel }.to_not raise_error
     end
 
@@ -42,6 +43,15 @@ describe 'erlang::source' do
         expect(chef_run_debian).to install_package(pkg)
       end
     end
+
+    context 'Erlang source remote file' do
+      let(:debian_erlang_source_file) { "#{Chef::Config[:file_cache_path]}/otp_src_#{chef_run_debian.node['erlang']['source']['version']}.tar.gz" }
+      let(:debian_remote_file_resource) { chef_run_debian.remote_file(debian_erlang_source_file) }
+
+      it 'creates a remote_file of the Erlang source code' do
+        expect(chef_run_debian).to create_remote_file(debian_erlang_source_file)
+      end
+    end
   end
 
   describe 'RHEL Platform Family' do
@@ -53,6 +63,15 @@ describe 'erlang::source' do
     %w(ncurses-devel openssl-devel).each do |pkg|
       it "installs #{pkg} package" do
         expect(chef_run_rhel).to install_package(pkg)
+      end
+    end
+
+    context 'Erlang source remote file' do
+      let(:rhel_erlang_source_file) { "#{Chef::Config[:file_cache_path]}/otp_src_#{chef_run_rhel.node['erlang']['source']['version']}.tar.gz" }
+      let(:rhel_remote_file_resource) { chef_run_rhel.remote_file(rhel_erlang_source_file) }
+
+      it 'creates a remote file of the Erlang source code' do
+        expect(chef_run_rhel).to create_remote_file(rhel_erlang_source_file)
       end
     end
   end

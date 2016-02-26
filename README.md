@@ -11,6 +11,7 @@ Manages installation of Erlang via packages or source.
 
 ### Chef
 - Chef 11+
+- Chef 12.7.0+ for Windows (Due to windows_pacakge useage)
 
 ### Cookbooks
 - yum
@@ -35,7 +36,8 @@ Manages installation of Erlang via packages or source.
 - used for ESL packages, useful for installing the packages on
 - distributions that they don't make specific packages available
 - (e.g., maverick vs precise).
-- `node['erlang']['windows']['version']` - version specifier for Windows installers
+- `node['erlang']['windows']['version']` - version specifier for Windows installer
+- `node['erlang']['windows']['checksum']` - Checksum of the Erlang/OTP Windows installer
 
 ## Recipes
 ### default
